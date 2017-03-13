@@ -16,9 +16,7 @@ public class CommandLineOptionsExample {
         // .addOption("p", "port", true, "Here you can set parameter .")
         .addOption("h", "help", false, "show help.");
 
-    Option.Builder builder = Option.builder("r");
-    Option port = builder.argName("p").longOpt("port").required().build();
-    options.addOption(port);
+    options.addOption(Option.builder("p").longOpt("port").required().build());
 
     System.out.println("CommandLineOptionsExample.main() - SRIDHAR: 2");
     try {
