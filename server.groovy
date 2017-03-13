@@ -15,7 +15,7 @@ public class CommandLineOptionsExample {
     Options options = new Options().addOption("p", "port", true, "Here you can set parameter .").addOption("h", "help",
         false, "show help.");
 
-    Option.Builder builder = Option.builder("p");
+    Option.Builder builder = Option.builder("r");
     Option r = builder.argName("r").longOpt("recursive").required().build();
     options.addOption(r);
 
