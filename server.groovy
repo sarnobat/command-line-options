@@ -1,8 +1,9 @@
 package test;
 
-import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
@@ -13,12 +14,14 @@ public class CommandLineOptionsExample {
 
     Options options = new Options();
     options.addOption("h", "help", false, "show help.");
-    options.addOption("v", "var", true, "Here you can set parameter .");
-    options.addOption("p", "port", true, "Here you can set parameter .");
+    Option.Builder builder = Option.builder("p");
+    Option p = builder.argName("p").longOpt("port").build();
+    //options.addOption("p", "port", true, "Here you can set parameter .");
+    options.addOption(p);
 
     System.out.println("CommandLineOptionsExample.main() - SRIDHAR: 2");
     try {
-      CommandLine cmd = new BasicParser().parse(options, args);
+      CommandLine cmd = new DefaultParser().parse(options, args);
       parse(options, cmd);
     } catch (ParseException e) {
       e.printStackTrace();
@@ -34,13 +37,13 @@ public class CommandLineOptionsExample {
       help(options);
     }
 
-    if (cmd.hasOption("v")) {
-      System.err.println("Using cli argument -v=" + cmd.getOptionValue("v"));
-      // Whatever you want to do with the setting goes here
-    } else {
-      System.err.println("Missing v option");
-      help(options);
-    }
+//    if (cmd.hasOption("v")) {
+//      System.err.println("Using cli argument -v=" + cmd.getOptionValue("v"));
+//      // Whatever you want to do with the setting goes here
+//    } else {
+//      System.err.println("Missing v option");
+//      help(options);
+//    }
   }
 
   private static void help(Options options) {
