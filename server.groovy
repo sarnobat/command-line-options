@@ -12,12 +12,13 @@ public class CommandLineOptionsExample {
   public static void main(String[] args) {
     System.out.println("CommandLineOptionsExample.main() - SRIDHAR: 1");
 
-    Options options = new Options().addOption("p", "port", true, "Here you can set parameter .").addOption("h", "help",
-        false, "show help.");
+    Options options = new Options()
+        // .addOption("p", "port", true, "Here you can set parameter .")
+        .addOption("h", "help", false, "show help.");
 
     Option.Builder builder = Option.builder("r");
-    Option r = builder.argName("r").longOpt("recursive").required().build();
-    options.addOption(r);
+    Option port = builder.argName("p").longOpt("port").required().build();
+    options.addOption(port);
 
     System.out.println("CommandLineOptionsExample.main() - SRIDHAR: 2");
     try {
@@ -30,7 +31,7 @@ public class CommandLineOptionsExample {
 
   private static void parse(Options options, CommandLine cmd) {
     String port = cmd.getOptionValue("p", "4444");
-    String recursive = cmd.getOptionValue("r", "true");
+    String recursive = cmd.getOptionValue("r", "false");
     System.out.println("CommandLineOptionsExample.parse() - SRIDHAR: port = " + port);
     System.out.println("CommandLineOptionsExample.parse() - SRIDHAR: recursive = " + recursive);
 
