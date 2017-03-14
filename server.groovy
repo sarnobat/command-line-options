@@ -12,15 +12,16 @@ public class CommandLineOptionsExample {
     String port;
     _parseOptions: {
 
-      Options options = new Options().addOption("p", "port", true, "Here you can set parameter .").addOption("h",
-          "help", false, "show help.");
+      Options options = new Options()
+	.addOption("h", "help", false, "show help.");
 
       Option option = Option.builder("a").longOpt("block-size").desc("use SIZE-byte blocks").hasArg().argName("SIZE")
           .build();
       options.addOption(option);
 
-      // This doesn't work
-      // options.addOption(Option.builder("p").argName("p").longOpt("port").required().build());
+      // This doesn't work with java 7
+      // "hasarg" is needed when the option takes a value
+      options.addOption(Option.builder("p").longOpt("port").hasArg().required().build());
 
       try {
         CommandLine cmd = new DefaultParser().parse(options, args);
